@@ -1,5 +1,7 @@
 package com.robindrew.trading.oanda.trader.oanda;
 
+import static com.robindrew.common.dependency.DependencyFactory.setDependency;
+
 import java.io.File;
 
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import com.robindrew.common.properties.map.type.IProperty;
 import com.robindrew.common.properties.map.type.StringProperty;
 import com.robindrew.common.service.component.AbstractIdleComponent;
 import com.robindrew.trading.log.TransactionLog;
+import com.robindrew.trading.oanda.platform.IOandaSession;
 import com.robindrew.trading.oanda.platform.OandaCredentials;
 import com.robindrew.trading.oanda.platform.OandaEnvironment;
 import com.robindrew.trading.oanda.platform.OandaSession;
@@ -42,6 +45,7 @@ public class OandaComponent extends AbstractIdleComponent {
 		log.info("Environment: {}", environment);
 		log.info("Account: {}", credentials.getAccountId());
 		OandaSession session = new OandaSession(credentials, environment);
+		setDependency(IOandaSession.class, session);
 
 		log.info("Creating Session Manager");
 		SessionManager sessionManager = new SessionManager(session);
