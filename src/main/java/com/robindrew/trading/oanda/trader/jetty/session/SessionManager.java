@@ -17,12 +17,12 @@ public class SessionManager implements SessionManagerMBean {
 
 	@Override
 	public String getRestDomain() {
-		return session.getEnvironment().getRestDomain();
+		return session.getEnvironment().getRestUrl();
 	}
 
 	@Override
 	public String getStreamDomain() {
-		return session.getEnvironment().getStreamDomain();
+		return session.getEnvironment().getStreamUrl();
 	}
 
 }
